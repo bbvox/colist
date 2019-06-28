@@ -1,0 +1,10 @@
+footer {
+  background-color: $color-blue;
+  margin: 2rem 0 0;
+  padding: 2rem;
+
+  color: $color-menu;
+  font-size: 1.1rem;
+
+  @include boxInset();
+}

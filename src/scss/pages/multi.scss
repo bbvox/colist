@@ -1,0 +1,24 @@
+/*
+  main.app_width.app_white > article.grid.single > div.item {type}
+*/
+&.multi {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 250px 250px;
+  grid-auto-flow: dense;
+
+  .main {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+
+  .title {
+    position: absolute;
+    background: $color-menu;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    color: $color-blue;
+  }
+}

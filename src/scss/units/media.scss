@@ -1,0 +1,27 @@
+// @media(max-width:768px) { 
+@media(max-width:1024px) { 
+  /* HEADER */
+  header {
+    ul {
+      flex-direction: column;
+      align-items: initial;
+    }
+  }
+
+  /* CENTER */
+  article.grid {
+    &.single {
+      grid-template-columns: 100%;
+      grid-template-areas: "iimg" "iinfo" "iprod" "imenu" "iads";
+      
+      .item {
+        border-color: coral;
+        border-width: 4px;
+      }
+
+    }
+
+  }
+
+  /* FOOTER */
+}

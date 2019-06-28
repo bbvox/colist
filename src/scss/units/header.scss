@@ -1,0 +1,57 @@
+/* HEADER */
+.head_top {
+  min-height: 10rem;
+}
+
+header {
+  background-color: $color-bg;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  .head_middle {
+    padding: 0 3rem;
+
+    max-height: 13.5rem;
+    overflow: hidden;
+  }
+
+  ul {
+    @include flexbox();
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    li {
+      margin: 1rem;
+    }
+
+    a {
+      display: block;
+      min-width: 9rem;
+      padding: 0rem 1rem;
+      color: $color-menu-hover;
+      // border: 1px solid $color-menu;
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+      padding-top: 3rem;
+      position: relative;
+
+      &.ico {
+        background-repeat: no-repeat;
+        background-position: 50% 0%;
+        background-size: 40px;
+      }
+
+      &:hover,
+      &.active {
+        color: $color-menu;
+      }
+
+      img {
+        width: 100px;
+      }
+
+      @import "./inits/_icons";
+    }
+  }
+}

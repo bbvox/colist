@@ -1,0 +1,99 @@
+/*
+  main.app_width.app_white > article.grid.single > div.item {type}
+*/
+&.single {
+  grid-template-columns: 25% auto 25%;
+  grid-template-rows: 1fr 50vh;
+  grid-template-areas:
+    "imenu iimg iimg"
+    "iads iinfo iprod";
+  /* area Names */
+  .imenu {
+    grid-area: imenu;
+  }
+  .iimg {
+    grid-area: iimg;
+    img {
+      max-height: 14rem;
+    }
+    // max-height: 33vh;
+  }
+  .iinfo {
+    grid-area: iinfo;
+  }
+  .iprod {
+    grid-area: iprod;
+  } 
+  .iads {
+    grid-area: iads;
+  }
+  
+  /* Recepie text */
+  .iinfo {
+    i {
+      color: $color-blue;
+      display: inline-block;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 2rem;
+      text-indent: 1rem;
+      margin: 0.1rem;
+    }
+  }
+
+  h3.title {
+    color: $color-blue;
+    &.sub {
+      color: $color-bg;
+      margin: 0.5rem 0;
+    }
+  }
+
+ul.sub_menu {
+  list-style: none outside;
+  
+  a {
+    display: block;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid $color-yellow;
+    color: $color-blue;
+    &:hover {
+      background: $color-yellow;
+    }
+  }
+  .prod_item {
+    padding: 0.7rem;
+  }
+}
+  .box_shadow {
+    padding: 0 1rem;
+    background: $color-white; 
+    @include boxShadow();
+  }
+
+
+/* ANIMATION */
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+
+}

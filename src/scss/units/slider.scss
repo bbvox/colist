@@ -1,0 +1,79 @@
+/* Slider styles 
+  - https://codepen.io/VoloshchenkoAl/pen/jBPEzG
+*/
+.slider {
+  height: 30vh;
+  overflow: hidden;
+
+  button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+
+  &__item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    img {
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
+    }
+
+    nav {
+      position: absolute;
+      bottom: 1rem;
+      background: #f6f6f6;
+      opacity: 0.6;
+      // min-height: 40px;
+      width: 100%;
+      .nav__prev {
+        float: left;
+        padding: 1rem;
+
+      }
+      .nav__next {
+        float: right;
+        padding: 1rem;
+      }
+    }
+
+
+// animation for slide
+.leave {
+  transform: translateX(0);
+}
+
+.enter-active.enter-next, .enter-active.enter-prev {
+  transform: translateX(0);
+  transition: transform 500ms linear;
+}
+
+.enter-next {
+  transform: translateX(100%);
+}
+
+.enter-prev {
+  transform: translateX(-100%);
+  transition: transform 500ms linear;
+}
+
+.leave-active-next {
+  transform: translateX(-100%);
+  transition: transform 500ms linear;;
+}
+
+.leave.leave-active-prev {
+  transform: translateX(100%);
+  transition: transform 500ms linear;
+}
+
+
+  }
+}

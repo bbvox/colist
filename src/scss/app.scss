@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+@import "./inits/_init";
+@import "./inits/_utils";
+
+.App {
+  /* APP GENERAL CLASSES */
+  .app_width {
+    width: $width-app;
+    margin: auto;
+    
+    &.app_white {
+      background: $color-white; 
+      @include boxShadow();
+    }
+    .error {
+      color: $color-red;
+      font-size: 0.9rem;
+    }
+    .marg1 {
+      margin: 1rem;
+    }
+    
+    .marg0-b{
+      margin-bottom: 0;
+    }
+    .tcenter {
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      margin: 1rem 0;
+      padding: 0.5rem;
+      border-bottom: 1px solid $color-yellow;
+    }
+
+  }
+
+  @import "./units/header";
+  @import "./units/slider";
+  @import "pages";
+  @import "./units/footer";
+
+  @import "./units/media";
+}
