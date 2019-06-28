@@ -22,6 +22,7 @@ main {
     transition: width 2s;
 
     &:hover {
+      // lifestyle.bg - same effect
       width: 120%;
     }
   }

@@ -7,7 +7,7 @@ export const mealMenu = [
   { title: "Салати", href: "salads", active: false },
   { title: "Аламинути", href: "fastfoods", icon: "cake.svg", active: false },
   { title: "Основни", href: "diners", icon: "cake.svg", active: false },
-  { title: "Хамбургери", href: "hamburgers", active: false },
+  { title: "Бургери", href: "hamburgers", active: false },
   { title: "Пици", href: "pizzas", active: false },
   { title: "Десерти", href: "sweets", active: false },
   { title: "Напитки", href: "drinks", active: false },
@@ -36,5 +36,5 @@ export const urls = {
 }
 
 export const sliderImages = [
-  '1.jpg', '1.jpg', '1.jpg', '1.jpg', '1.jpg'
+  '0.jpg', '1.jpg', '2.jpg', '3.jpg', '4.jpg'
 ]

@@ -1,90 +1,83 @@
 import React from 'react';
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+// import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { urls, sliderImages } from '../../services/config';
 
-let cnt = 0;
-const ImgBox = (props) => {
-  cnt ++;
-  return (
-    <TransitionGroup className="animImg">
-      <div className="tst" key={cnt}>
-        <img src={props.imgSrc} alt='Slider img' />
-      </div>
-    </TransitionGroup>  
-  )
-}
-
-// const Slider = (props) => {
-// -  const sliderStyle = {
-// -    // position: 'relative',
-// -    textAlign: 'center',
-// -    background: '#f5f5f5',
-// -    marginBottom: '1rem'
-// -  }
-// -  return (
-// -    <div style={sliderStyle}>
-// -      <img src={`${rootUrl}/images/slider4.jpg`} alt=' ' />
-// -    </div>
-// -  )
-// -}
-
-
 // https://codepen.io/VoloshchenkoAl/pen/jBPEzG
+
 class slider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: 1
+      current: 0,
+      next: true
     }
 
     this.handlerPrev = this.handlerPrev.bind(this);
     this.handlerNext = this.handlerNext.bind(this);
   }
 
-  handlerPrev (ev) {
+  handlerPrev(ev) {
     ev.preventDefault();
-    let { active } = this.state;
-    active--;
 
-    this.setState({ active });
+    if (!this.state.current) {
+      return;
+    }
+    this.setState(prevState => ({
+      current: prevState.current - 1,
+      next: false
+    }));
   }
 
-  handlerNext (ev) {
+  handlerNext(ev) {
     ev.preventDefault();
-    let { active } = this.state;
+    const nextIndex = this.state.current + 1;
+    if (!sliderImages[nextIndex]) {
+      return;
+    }
 
-    active++;
-    this.setState({ active });
+    this.setState(prevState => ({
+      current: prevState.current + 1,
+      next: true
+    }));
   }
 
-  renderImg () {
-    const imgSrc = `${urls.slider}/${this.state.active}.jpg`;
-    const isnext = true;
+  //return Slider Image Source
+  getImgSrc = () => (
+    `${urls.slider}/${this.state.current}.jpg`
+  )
+
+  renderItem() {
+    const imgSrc = this.getImgSrc();
+    const isnext = this.state.next;
     return (
-
-      <TransitionGroup className="animImg">
-        <div className="tst">
+      <ReactCSSTransitionGroup
+        transitionName={{
+          enter: isnext ? 'enter-next' : 'enter-prev',
+          enterActive: 'enter-active',
+          leave: 'leave',
+          leaveActive: isnext ? 'leave-active-next' : 'leave-active-prev'
+        }}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+      >
+        <div className="slider__item" key={this.state.current}>
           <img src={imgSrc} alt='Slider img' />
         </div>
-      </TransitionGroup>    
+      </ReactCSSTransitionGroup>
     )
   }
 
   renderSlider() {
-    const imgSrc = `${urls.slider}/${this.state.active}.jpg`;
     return (
       <div className="slider">
-        <div className="slider__item">
-          <ImgBox imgSrc={imgSrc} />
-          <nav>
-            <button className="nav__prev" onClick={this.handlerPrev}>{'<<<'}</button>
-            <button className="nav__next" onClick={this.handlerNext}>{'>>>'}</button>
-          </nav>
-        </div>
+        {this.renderItem()}
+        <nav>
+          <button className="nav__prev" onClick={this.handlerPrev}>{'<<<'}</button>
+          <button className="nav__next" onClick={this.handlerNext}>{'>>>'}</button>
+        </nav>
       </div>
-
     );
   }
 

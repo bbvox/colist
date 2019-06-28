@@ -30,7 +30,6 @@ class App extends Component {
           <Router>
             <>
               <comp.header />
-              {/* !this.state.singlePage && Slider() */}
               {!this.state.singlePage && <comp.slider />}
               <Route exact path="/" component={comp.home} />
               <Route exact path="/meals/:type" component={comp.multi} />

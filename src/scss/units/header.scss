@@ -10,7 +10,7 @@ header {
   font-weight: bold;
 
   .head_middle {
-    padding: 0 3rem;
+    padding: 0 1rem;
 
     max-height: 13.5rem;
     overflow: hidden;
@@ -19,27 +19,31 @@ header {
   ul {
     @include flexbox();
     flex-direction: row;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
+    justify-content: space-between;
+    justify-content: center;
 
     li {
-      margin: 1rem;
+      margin: 0 1vw;
     }
 
     a {
       display: block;
-      min-width: 9rem;
-      padding: 0rem 1rem;
+      // min-width: 7rem;
+      padding: 0rem 0.1rem;
       color: $color-menu-hover;
       // border: 1px solid $color-menu;
-      font-family: 'Lato', sans-serif;
+      font-family: "Lato", sans-serif;
       text-align: center;
       padding-top: 3rem;
+      padding-top: 3.1vw;
       position: relative;
 
       &.ico {
         background-repeat: no-repeat;
         background-position: 50% 0%;
         background-size: 40px;
+        background-size: 3vw;
       }
 
       &:hover,
