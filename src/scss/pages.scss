@@ -19,11 +19,14 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: width 2s;
+    // transition: width 2s;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 
     &:hover {
       // lifestyle.bg - same effect
-      width: 120%;
+      // width: 120%;
+      transform: scale(1.1);
     }
   }
 

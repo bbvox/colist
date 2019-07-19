@@ -10,7 +10,6 @@ class header extends Component {
     this.state = {
       menu: mealMenu
     };
-    this.menuId = 0;
   }
 
   componentWillMount() {
@@ -32,7 +31,6 @@ class header extends Component {
     this.setActive(_hrefIndex);
   }
 
-  //set menu[activeIndex].active = true;
   setActive(activeIndex) {
     let menu = this.state.menu.map((v, ind) => {
       v.active = ind === activeIndex;
@@ -43,17 +41,18 @@ class header extends Component {
   }
 
   handleHover(menuId) {
-    let { menu } = this.state;
-    if (menu[menuId].className) {
-      menu[menuId].className = false;
-    } else {
-      menu[menuId].className = `ico ico-${menu[menuId].href}2`;
-    }
-    this.setState({ menu });
+    this.setState(prevState => {
+      let menu = [...prevState.menu];
+      menu[menuId] = {
+        ...menu[menuId],
+        className: menu[menuId].className ? false : `ico ico-${menu[menuId].href}2`
+      }
+      return { menu };
+    });
   }
 
   renderMenu() {
-    const { menu } = this.state;
+    const menu = [...this.state.menu];
 
     return (
       <ul>
@@ -77,10 +76,12 @@ class header extends Component {
   render() {
     return (
       <>
-      <div className={'head_top app_white app_width'}></div>
-      <header>
-        <nav className={'head_middle app_width'}>{this.renderMenu()}</nav>
-      </header>
+        <div className={'head_top app_white app_width'}></div>
+        <header>
+          <nav className={'head_middle app_width'}>
+            {this.renderMenu()}
+          </nav>
+        </header>
       </>
     );
   }
