@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-// import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { urls, sliderImages } from '../../services/config';
 
 // https://codepen.io/VoloshchenkoAl/pen/jBPEzG
+// https://codesandbox.io/s/km4jyy4n0v?from-embed
+// https://stackblitz.com/edit/demo-carousel
 
 class slider extends React.Component {
   constructor(props) {
@@ -13,7 +14,6 @@ class slider extends React.Component {
       current: 0,
       next: true
     }
-
     this.handlerPrev = this.handlerPrev.bind(this);
     this.handlerNext = this.handlerNext.bind(this);
   }
@@ -52,34 +52,36 @@ class slider extends React.Component {
     const imgSrc = this.getImgSrc();
     const isnext = this.state.next;
     return (
-      <ReactCSSTransitionGroup
-        transitionName={{
-          enter: isnext ? 'enter-next' : 'enter-prev',
-          enterActive: 'enter-active',
-          leave: 'leave',
-          leaveActive: isnext ? 'leave-active-next' : 'leave-active-prev'
-        }}
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-      >
-        <div className="slider__item" key={this.state.current}>
-          <img src={imgSrc} alt='Slider img' />
-        </div>
-      </ReactCSSTransitionGroup>
+      <TransitionGroup component={null}>
+        <CSSTransition
+          in={false}
+          key={this.state.current}
+          classNames={{
+            enter: isnext ? 'enter-next' : 'enter-prev',
+            enterActive: 'enter-active',
+            leave: 'leave',
+            leaveActive: isnext ? 'leave-active-next' : 'leave-active-prev'
+          }}
+          timeout={{ enter: 500, exit: 700 }}
+        >
+
+          <div className="slider__item">
+            <img src={imgSrc} alt='Slider img' />
+          </div>
+        </CSSTransition>
+      </TransitionGroup>
     )
   }
 
-  renderSlider() {
-    return (
-      <div className="slider">
-        {this.renderItem()}
-        <nav>
-          <button className="nav__prev" onClick={this.handlerPrev}>{'<<<'}</button>
-          <button className="nav__next" onClick={this.handlerNext}>{'>>>'}</button>
-        </nav>
-      </div>
-    );
-  }
+  renderSlider = () => (
+    <div className="slider">
+      {this.renderItem()}
+      <nav>
+        <button className="nav__prev" onClick={this.handlerPrev}>{'<<<'}</button>
+        <button className="nav__next" onClick={this.handlerNext}>{'>>>'}</button>
+      </nav>
+    </div>
+  )
 
   render() {
     return (

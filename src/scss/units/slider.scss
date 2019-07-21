@@ -61,6 +61,12 @@ button {
     }
   }
 
+  &__item:nth-child(2) {
+    // display: none;
+    transform: translateX(-100%);
+    transition: transform 500ms linear;
+  }
+
   // animation for slide
   .leave {
     transform: translateX(0);
